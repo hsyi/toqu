@@ -7,13 +7,16 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class netqu {
+public class netqu  {
 
 	private JFrame frame;
 	private JTextField dian1;
@@ -22,7 +25,9 @@ public class netqu {
 	private JTextField dian4;
 	private JTextField quanzhi;
 	private paintpanel panel_2 ;
-
+	private JTextField shubiaodianji;
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -45,16 +50,26 @@ public class netqu {
 	public netqu() {
 		initialize();
 	}
+	private class mouselisten extends MouseAdapter{
+		public void mouseClicked(MouseEvent me){
+			 int x=me.getX();
+			 int y=me.getY();
+			 int id=panel_2.getid(x,y);
+//			 shubiaodianji.setText("shenmegui");
+			 if(id<1000)
+				 shubiaodianji.setText(id+"");
+			 else shubiaodianji.setText(id+"1000");
+		 }
+	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize()  {
 		frame = new JFrame();
 		frame.setTitle("\u7F51\u7EDC\u6700\u77ED\u8DEF\u5F84\u6F14\u793A");
 		frame.setBounds(100, 100, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
 		
@@ -87,7 +102,6 @@ public class netqu {
 		JTextArea textArea = new JTextArea();
 		textArea.setBounds(101, 25, -50, -12);
 		panel_1.add(textArea);
-		
 		dian1 = new JTextField();
 		dian1.setBounds(44, 7, 30, 18);
 		panel_1.add(dian1);
@@ -143,11 +157,17 @@ public class netqu {
 		
 		panel_2 = new paintpanel();
 		panel_2.setBounds(20, 37, 606, 482);
+		panel_2.addMouseListener(new mouselisten());
 		panel_1.add(panel_2);
 		
 		JButton btnxianshibian = new JButton("\u663E\u793A");
 		btnxianshibian.setBounds(681, 6, 93, 23);
 		panel_1.add(btnxianshibian);
+		
+		shubiaodianji = new JTextField();
+		shubiaodianji.setBounds(359, 7, 66, 21);
+		panel_1.add(shubiaodianji);
+		shubiaodianji.setColumns(10);
 		btnxianshibian.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int p3,p4;

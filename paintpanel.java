@@ -13,21 +13,22 @@ public class paintpanel extends JPanel {
 	}
 	public void paint(Graphics g) {  
 	 Graphics2D g2d = (Graphics2D) g;
+	 	super.paint(g);//不加这句 repaint不能清除之前的画面
 		if(mps.status==0){
 			g2d.setColor(Color.red);
 			//g.fillPolygon(mps.x,mps.y,somefinals.DIANSHU);
 			for(int i=0;i<somefinals.DIANSHU;i++){
-				g2d.fillOval(mps.px[i]-10, mps.py[i]-10, 20, 20);//第零个点为最左边的点 顺时针编号
+				g2d.drawOval(mps.px[i]-10, mps.py[i]-10, 20, 20);//第零个点为最左边的点 顺时针编号
 			}
 		}
 		else if(mps.status==1){
 			g2d.setColor(Color.red);
 			for(int i=0;i<somefinals.DIANSHU;i++){
-				g2d.fillOval(mps.px[i]-5, mps.py[i]-5, 10, 10);//第零个点为最左边的点 顺时针编号
+				g2d.drawOval(mps.px[i]-10, mps.py[i]-10, 20, 20);//第零个点为最左边的点 顺时针编号
 			}
 			Color curcolor=g.getColor();
 			g2d.setColor(Color.BLUE);
-			g2d.setStroke(new BasicStroke(5));
+			g2d.setStroke(new BasicStroke(3));
 			for(int i=0;i<mps.edges.size();i++){
 				g2d.drawLine(mps.px[mps.edges.get(i).p1], mps.py[mps.edges.get(i).p1], mps.px[mps.edges.get(i).p2], mps.py[mps.edges.get(i).p2]);
 			}
@@ -36,16 +37,17 @@ public class paintpanel extends JPanel {
 		else if(mps.status==2){
 			g2d.setColor(Color.red);
 			for(int i=0;i<somefinals.DIANSHU;i++){
-				g2d.fillOval(mps.px[i]-5, mps.py[i]-5, 10, 10);//第零个点为最左边的点 顺时针编号
+				g2d.drawOval(mps.px[i]-10, mps.py[i]-10, 20, 20);//第零个点为最左边的点 顺时针编号
 			}
 			Color curcolor=g.getColor();
 			g2d.setColor(Color.BLUE);
-			g2d.setStroke(new BasicStroke(5));
+			g2d.setStroke(new BasicStroke(3));
 			for(int i=0;i<mps.edges.size();i++){
 				g2d.drawLine(mps.px[mps.edges.get(i).p1], mps.py[mps.edges.get(i).p1], mps.px[mps.edges.get(i).p2], mps.py[mps.edges.get(i).p2]);
 			}
 			g2d.setColor(curcolor);
 			int cur=mps.ed;
+			g2d.setStroke(new BasicStroke(5));
 			while(mps.zuiduanpre[cur]!=cur){
 				System.out.println(mps.zuiduanpre[cur]);
 				g2d.drawLine(mps.px[cur], mps.py[cur], mps.px[mps.zuiduanpre[cur]], mps.py[mps.zuiduanpre[cur]]);
@@ -56,11 +58,9 @@ public class paintpanel extends JPanel {
 		else System.out.println("error!!!");
 	}
 	public void shengchengtu(){
-		if(mps.status==0){
 			mps.randomcreate();
 			mps.status=1;
 			repaint();
-		}
 	}
 	public void showpath(int st,int ed){
 		if(mps.status<1) return;
@@ -116,5 +116,12 @@ public class paintpanel extends JPanel {
 			return true;
 		}
 		return false;
+	}
+	public int getid(int x, int y) {
+		for(int i=0;i<somefinals.DIANSHU;++i){
+			if(((mps.px[i]-x)*(mps.px[i]-x)+(mps.py[i]-y)*(mps.py[i]-y))<=100) return i;
+		}
+		
+		return 1000;
 	}
 }
