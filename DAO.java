@@ -46,8 +46,8 @@ public class DAO{
 //			}
 //		}
 		for(int i=0;i<somefinals.DIANSHU;++i){
-			px[i]=(int)(somefinals.WIDTH*Math.random())+20;
-			py[i]=(int)(somefinals.HEIGHT*Math.random())+20;
+			px[i]=(int)(somefinals.WIDTH*Math.random())+101;
+			py[i]=(int)(somefinals.HEIGHT*Math.random())+101;
 		}
 	}                                        
 //	private Point calpoint(double arc){ 圆形的时候按照弧度计算点的位置
@@ -59,8 +59,8 @@ public class DAO{
 	public void randomcreate( ){
 		if(createtimes>1){
 			for(int i=0;i<somefinals.DIANSHU;++i){
-				px[i]=(int)(somefinals.WIDTH*Math.random())+20;
-				py[i]=(int)(somefinals.HEIGHT*Math.random())+20;
+				px[i]=(int)(somefinals.WIDTH*Math.random())+101;
+				py[i]=(int)(somefinals.HEIGHT*Math.random())+101;
 			}
 		}
 		createtimes++;
@@ -123,18 +123,18 @@ public class DAO{
 		issingle=new boolean[somefinals.DIANSHU];
 		int mindis[];
 		int minid[];
-		mindis=new int[somefinals.DIANSHU];
-		minid=new int[somefinals.DIANSHU];
-		Arrays.fill(issingle, true);
-		Arrays.fill(mindis, somefinals.INF);
+//		mindis=new int[somefinals.DIANSHU];
+//		minid=new int[somefinals.DIANSHU];
+//		Arrays.fill(issingle, true);
+//		Arrays.fill(mindis, somefinals.INF);
 		for(int i=0;i<somefinals.DIANSHU;++i){
 			for(int j=i+1;j<somefinals.DIANSHU;++j){
-				int curdis=(px[i]-px[j])*(px[i]-px[j])+(py[i]-py[j])*(py[i]-py[j]);
-				if(curdis<mindis[i]) {
-					minid[i]=j;
-					mindis[i]=curdis;
-				}
-				if(curdis<=somefinals.DISPOWER){
+				double curdis=Math.pow((double)((px[i]-px[j])*(px[i]-px[j])+(py[i]-py[j])*(py[i]-py[j])),0.5);
+//				if(curdis<mindis[i]) {
+//					minid[i]=j;
+//					mindis[i]=curdis;
+//				}
+				if(curdis<=somefinals.COVERDIS){
 					netline e=new netline();
 					int a=i;
 					int b=j;
@@ -146,17 +146,17 @@ public class DAO{
 					System.out.println(a+"   "+b);
 				}
 			}
-			if(issingle[i]){
-				netline e=new netline();
-				int a=i;
-				int b=minid[i];
-				issingle[a]=false;
-				e.p1=a;
-				e.p2=b;
-				maps[b][a]=maps[a][b]=e.bw_h=1024+Math.random()*500;
-				edges.add(e);
-				System.out.println(a+"   "+b);
-			}
+//			if(issingle[i]){
+//				netline e=new netline();
+//				int a=i;
+//				int b=minid[i];
+//				issingle[a]=false;
+//				e.p1=a;
+//				e.p2=b;
+//				maps[b][a]=maps[a][b]=e.bw_h=1024+Math.random()*500;
+//				edges.add(e);
+//				System.out.println(a+"   "+b);
+//			}
 		}
 			
 		

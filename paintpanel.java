@@ -18,17 +18,24 @@ public class paintpanel extends JPanel {
 			g2d.setColor(Color.red);
 			//g.fillPolygon(mps.x,mps.y,somefinals.DIANSHU);
 			for(int i=0;i<somefinals.DIANSHU;i++){
-				g2d.drawOval(mps.px[i]-10, mps.py[i]-10, 20, 20);//第零个点为最左边的点 顺时针编号
+				g2d.fillOval(mps.px[i]-3, mps.py[i]-3, 6, 6);//第零个点为最左边的点 顺时针编号
 			}
 		}
 		else if(mps.status==1){
-			g2d.setColor(Color.red);
+			g2d.setColor(Color.RED);
 			for(int i=0;i<somefinals.DIANSHU;i++){
-				g2d.drawOval(mps.px[i]-10, mps.py[i]-10, 20, 20);//第零个点为最左边的点 顺时针编号
+				g2d.fillOval(mps.px[i]-3, mps.py[i]-3, 6, 6);//第零个点为最左边的点 顺时针编号
+				Stroke od=g2d.getStroke();
+				Color olc=g2d.getColor();
+				g2d.setColor(new Color(75,134,70));
+				g2d.setStroke(new BasicStroke(0.5f,BasicStroke.CAP_SQUARE,BasicStroke.JOIN_ROUND,3.5f,new float[]{5,10},0f));
+				g2d.drawOval((int)(mps.px[i]-somefinals.COVERDIS), (int)(mps.py[i]-somefinals.COVERDIS),(int)( 2*somefinals.COVERDIS),(int)( 2*somefinals.COVERDIS));
+				g2d.setStroke(od);
+				g2d.setColor(olc);
 			}
 			Color curcolor=g.getColor();
 			g2d.setColor(Color.BLUE);
-			g2d.setStroke(new BasicStroke(3));
+			g2d.setStroke(new BasicStroke(1));
 			for(int i=0;i<mps.edges.size();i++){
 				g2d.drawLine(mps.px[mps.edges.get(i).p1], mps.py[mps.edges.get(i).p1], mps.px[mps.edges.get(i).p2], mps.py[mps.edges.get(i).p2]);
 			}
@@ -37,17 +44,24 @@ public class paintpanel extends JPanel {
 		else if(mps.status==2){
 			g2d.setColor(Color.red);
 			for(int i=0;i<somefinals.DIANSHU;i++){
-				g2d.drawOval(mps.px[i]-10, mps.py[i]-10, 20, 20);//第零个点为最左边的点 顺时针编号
+				g2d.fillOval(mps.px[i]-3, mps.py[i]-3, 6, 6);//第零个点为最左边的点 顺时针编号
+				Stroke od=g2d.getStroke();
+				Color olc=g2d.getColor();
+				g2d.setColor(new Color(75,134,70));
+				g2d.setStroke(new BasicStroke(0.5f,BasicStroke.CAP_SQUARE,BasicStroke.JOIN_ROUND,3.5f,new float[]{5,10},0f));
+				g2d.drawOval((int)(mps.px[i]-somefinals.COVERDIS), (int)(mps.py[i]-somefinals.COVERDIS),(int)( 2*somefinals.COVERDIS),(int)( 2*somefinals.COVERDIS));
+				g2d.setStroke(od);
+				g2d.setColor(olc);
 			}
 			Color curcolor=g.getColor();
 			g2d.setColor(Color.BLUE);
-			g2d.setStroke(new BasicStroke(3));
+			g2d.setStroke(new BasicStroke(1));
 			for(int i=0;i<mps.edges.size();i++){
 				g2d.drawLine(mps.px[mps.edges.get(i).p1], mps.py[mps.edges.get(i).p1], mps.px[mps.edges.get(i).p2], mps.py[mps.edges.get(i).p2]);
 			}
 			g2d.setColor(curcolor);
 			int cur=mps.ed;
-			g2d.setStroke(new BasicStroke(5));
+			g2d.setStroke(new BasicStroke(1));
 			while(mps.zuiduanpre[cur]!=cur){
 				System.out.println(mps.zuiduanpre[cur]);
 				g2d.drawLine(mps.px[cur], mps.py[cur], mps.px[mps.zuiduanpre[cur]], mps.py[mps.zuiduanpre[cur]]);
