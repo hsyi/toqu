@@ -27,7 +27,7 @@ public class paintpanel extends JPanel {
 				g2d.fillOval(mps.px[i]-3, mps.py[i]-3, 6, 6);//第零个点为最左边的点 顺时针编号
 				Stroke od=g2d.getStroke();
 				Color olc=g2d.getColor();
-				g2d.setColor(new Color(235,135,116));
+				g2d.setColor(new Color(75,134,70));
 				g2d.setStroke(new BasicStroke(0.5f,BasicStroke.CAP_SQUARE,BasicStroke.JOIN_ROUND,3.5f,new float[]{5,10},0f));
 				g2d.drawOval((int)(mps.px[i]-somefinals.COVERDIS), (int)(mps.py[i]-somefinals.COVERDIS),(int)( 2*somefinals.COVERDIS),(int)( 2*somefinals.COVERDIS));
 				g2d.setStroke(od);
@@ -47,7 +47,7 @@ public class paintpanel extends JPanel {
 				g2d.fillOval(mps.px[i]-3, mps.py[i]-3, 6, 6);//第零个点为最左边的点 顺时针编号
 				Stroke od=g2d.getStroke();
 				Color olc=g2d.getColor();
-				g2d.setColor(new Color(235,135,116));
+				g2d.setColor(new Color(75,134,70));
 				g2d.setStroke(new BasicStroke(0.5f,BasicStroke.CAP_SQUARE,BasicStroke.JOIN_ROUND,3.5f,new float[]{5,10},0f));
 				g2d.drawOval((int)(mps.px[i]-somefinals.COVERDIS), (int)(mps.py[i]-somefinals.COVERDIS),(int)( 2*somefinals.COVERDIS),(int)( 2*somefinals.COVERDIS));
 				g2d.setStroke(od);
